@@ -16,23 +16,13 @@ For Python 2.7, use v0.4.x
 
 Install
 -------
-
-Install from PyPI:
-::
-
-    # pip install sstp-server
-
 Please ensure your pip >= 9.0.1 to get correct version.
 
 Install from GitHub:
 ::
 
-    # pip install git+https://github.com/sorz/sstp-server.git
+    # pip install git+https://github.com/zeropool/sstp-server.git
 
-
-Arch Linux user may install
-`sstp-server <https://aur.archlinux.org/packages/sstp-server/>`_
-package from AUR.
 
 
 Usage
