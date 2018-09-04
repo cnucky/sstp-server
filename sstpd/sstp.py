@@ -56,9 +56,7 @@ class SSTPProtocol(Protocol):
     def connection_made(self, transport):
         self.transport = transport
         self.proxy_protocol_passed = not self.factory.proxy_protocol
-        peer = self.transport.get_extra_info("peername")
-        if hasattr(peer, 'host'):
-            self.remote_host = str(peer.host)
+        self.remote_host = transport.get_extra_info('peername')[0]
 
 
     def data_received(self, data):
@@ -245,7 +243,7 @@ class SSTPProtocol(Protocol):
         args = ['notty', 'file', self.factory.pppd_config_file,
                 '115200', address_argument]
         if self.remote_host is not None:
-            args += ['remotenumber', self.remote_host]
+            args += ['ipparam', self.remote_host, 'remotenumber', self.remote_host]
 
         factory = PPPDProtocolFactory(callback=self, remote=remote)
         coro = self.loop.subprocess_exec(factory, self.factory.pppd, *args)
